@@ -14,6 +14,7 @@ export class PainelComponent implements OnInit {
   public resposta: string;
   public rodada = 0;
   public rodadaFrase: Frase;
+  public progresso = 0;
 
   constructor() {
     this.rodadaFrase = this.frases[this.rodada];
@@ -31,6 +32,8 @@ export class PainelComponent implements OnInit {
       alert('Tradução está correta');
       this.rodada++;
       this.rodadaFrase = this.frases[this.rodada];
+      this.progresso = this.progresso + (100 / this.frases.length );
+      this.resposta = '';
     } else {
       alert('Tradução está errada');
     }
