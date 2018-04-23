@@ -18,4 +18,11 @@ export class OfertasService {
       .catch(e => console.log(e));
   }
 
+  public getOfertasPorCategoria(categoria: string): Promise<Array<Oferta>> {
+    return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+      .toPromise()
+      .then((ofertas: any) => ofertas.json())
+      .catch(e => console.log(e));
+  }
+
 }
