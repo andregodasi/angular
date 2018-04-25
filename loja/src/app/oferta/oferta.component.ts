@@ -6,7 +6,8 @@ import { Oferta } from '../shared/oferta.model';
 @Component({
   selector: 'ui-oferta',
   templateUrl: './oferta.component.html',
-  styleUrls: ['./oferta.component.css']
+  styleUrls: ['./oferta.component.css'],
+  providers: [OfertasService]
 })
 export class OfertaComponent implements OnInit {
 
