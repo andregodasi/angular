@@ -11,7 +11,6 @@ import { Oferta } from '../shared/oferta.model';
 export class RestaurantesComponent implements OnInit {
 
   public ofertas: Array<Oferta>;
-
   constructor(private ofertasService: OfertasService) { }
 
   ngOnInit() {
