@@ -1,6 +1,6 @@
 <div class="container">
   <div class="ordem-compra">
-    <form novalidate>
+    <form #formulario="ngForm" novalidate (ngSubmit)="confirmarCompra()">
 
       <h5>Sua Compra</h5>
       <hr />
@@ -60,26 +60,49 @@
       </div>
       <br />
 
-
+      <pre>{{formulario.value | json}}</pre>
       <h5>Dados de entrega</h5>
       <hr />
 
       <div class="form-row">
 
         <div class="form-group col-md-6">
-          <input [value]="endereco" type="text" class="form-control is-invalid" placeholder="Endereço" autocomplete="off" minlength="5"
-            required>
-          <div class="invalid-feedback">Endereço inválido</div>
+          <input
+            type="text"
+            class="form-control is-invalid"
+            placeholder="Endereço"
+            autocomplete="off"
+            minlength="5"
+            required
+            ngModel
+            name="endereco"
+          >
+          <small class="form-text text-danger">Endereço inválido</small>
         </div>
 
         <div class="form-group col-md-2">
-          <input [value]="numero" type="text" class="form-control is-valid" placeholder="Número" autocomplete="off" minlength="1" required>
-          <br />
-          <small class="form-text text-muted">Ok</small>
+          <input
+            type="text"
+            class="form-control is-valid"
+            placeholder="Número"
+            autocomplete="off"
+            minlength="1"
+            required
+            ngModel
+            name="numero"
+          >
+          <small class="form-text text-success">Ok</small>
         </div>
 
         <div class="form-group col-md-4">
-          <input [value]="complemento" type="text" class="form-control" placeholder="Complemento" autocomplete="off">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Complemento"
+            autocomplete="off"
+            ngModel
+            name="complemento"
+          >
         </div>
 
       </div>
@@ -91,21 +114,21 @@
       <div class="form-row">
 
         <div class="form-group col-md-3">
-          <select class="form-control is-invalid">
-            <option>Selecione uma opção</option>
-            <option value="dinheiro" selected="{{formaPagamento === 'dinheiro'? 'selected':''}}">Dinheiro</option>
-            <option value="debito" selected="{{formaPagamento === 'debito'? 'selected':''}}">Débito</option>
+          <select
+            class="form-control is-invalid"
+            ngModel
+            name="formaPagamento"
+          >
+            <option value="">Selecione uma opção</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="debito">Débito</option>
           </select>
-
-          <div class="invalid-feedback">Selecione uma forma de pagamento</div>
+          <small class="form-text text-danger">Forma de pagamento inválida</small>
         </div>
       </div>
 
       <hr />
       <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
     </form>
-  </div>
-  <div class="ordem-compra" *ngIf="idPedidoCompra !== undefined">
-    <ui-ordem-compra-sucesso [idPedidoCompra]="idPedidoCompra"></ui-ordem-compra-sucesso>
   </div>
 </div>
