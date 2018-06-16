@@ -213,6 +213,13 @@
       "complemento": "",
       "formaPagamento": "",
       "id": 4
+    },
+    {
+      "endereco": "rua 0",
+      "numero": "4343",
+      "complemento": "casa",
+      "formaPagamento": "casa",
+      "id": 5
     }
   ]
 }

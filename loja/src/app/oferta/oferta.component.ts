@@ -5,12 +5,13 @@ import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Observer } from 'rxjs/Observer';
+import CarrinhoService from '../carrinho.service';
 
 @Component({
   selector: 'ui-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [OfertasService]
+  providers: [OfertasService, CarrinhoService]
 })
 export class OfertaComponent implements OnInit {
 
@@ -18,10 +19,12 @@ export class OfertaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private ofertasService: OfertasService
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
+    console.log(this.carrinhoService.exibirItens());
     this.route.params.subscribe((parametros: Params) => {
       this.ofertasService.getOfertaPorId(parametros.id)
         .then(oferta => this.oferta = oferta);
