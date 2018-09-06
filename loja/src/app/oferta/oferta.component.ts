@@ -5,13 +5,13 @@ import { Oferta } from '../shared/oferta.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Observer } from 'rxjs/Observer';
-import CarrinhoService from '../carrinho.service';
+import { CarrinhoService } from '../carrinho.service';
 
 @Component({
   selector: 'ui-oferta',
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.css'],
-  providers: [OfertasService, CarrinhoService]
+  providers: [OfertasService]
 })
 export class OfertaComponent implements OnInit {
 
@@ -60,4 +60,9 @@ export class OfertaComponent implements OnInit {
     meuIbservable.unSubscribe()
   }
  */
+
+  adicionarItemCarrinho(oferta: Oferta): void {
+    this.carrinhoService.incluirItem(oferta);
+
+  }
 }
