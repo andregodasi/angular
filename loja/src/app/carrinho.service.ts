@@ -13,7 +13,7 @@ class CarrinhoService {
   }
 
   incluirItem(oferta: Oferta): void {
-    let itemCarrinho: ItemCarrinho = new ItemCarrinho(
+    const itemCarrinho: ItemCarrinho = new ItemCarrinho(
       oferta.id,
       oferta.imagens[0],
       oferta.titulo,
@@ -37,6 +37,24 @@ class CarrinhoService {
       total += (item.valor * item.quantidade);
     });
     return total;
+  }
+
+  public adicionarQuantidade(itemCarrinho: ItemCarrinho): void {
+    const itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade += 1;
+    }
+  }
+
+  public removerQuantidade(itemCarrinho: ItemCarrinho): void {
+    const itemCarrinhoEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
+    if (itemCarrinhoEncontrado) {
+      itemCarrinhoEncontrado.quantidade -= 1;
+      if (itemCarrinho.quantidade === 0) {
+        this.itens.splice(this.itens.indexOf(itemCarrinhoEncontrado), 1);
+
+      }
+    }
   }
 }
 
